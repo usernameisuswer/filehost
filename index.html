@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Файловый обменник</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #bdbbbb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .upload-container {
+    background-color: #8c8b8b;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .upload-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  .upload-btn:hover {
+    background-color: #45a049;
+  }
+  input[type="file"] {
+    margin-bottom: 20px;
+  }
+</style>
+</head>
+<body>
+
+<div class="upload-container">
+  <form action="script.php" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" id="fileInput">
+    <input type="submit" value="Загрузить файл" name="submit" class="upload-btn">
+  </form>
+</div>
+  
+  
+<script>
+function uploadFile() {
+  var file = document.getElementById('fileInput').files[0];
+  var formData = new FormData();
+  formData.append("file", file);
+
+  fetch('/upload', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    if(data.success) {
+      alert('Файл успешно загружен. Ссылка на файл: ' + data.fileUrl);
+    } else {
+      alert('Произошла ошибка при загрузке файла.');
+    }
+  })
+  .catch(error => {
+    console.error('Ошибка:', error);
+  });
+}
+</script>
+
+</body>
+</html>
+
