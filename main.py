@@ -1,9 +1,7 @@
 import os
 import requests
-from aiogram import Bot, types, Dispatcher
+from aiogram import Bot, types, Dispatcher, executor
 from aiogram.types import ContentType
-from aiogram.utils import executor
-
 TG_BOT_TOKEN = ""
 bot = Bot(token=TG_BOT_TOKEN)
 dp = Dispatcher(bot)
