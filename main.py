@@ -1,7 +1,6 @@
 import os
 import requests
-from aiogram import Bot, types
-from aiogram.dispatcher import Dispatcher
+from aiogram import Bot, types, Dispatcher
 from aiogram.types import ContentType
 from aiogram.utils import executor
 
